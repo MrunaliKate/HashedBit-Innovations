@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    input {
+      margin: 5px;
+      padding: 8px;
+      width: 150px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mathematical Calculator</h1>
+  
+  <input type="number" id="num1" placeholder="Enter first number">
+  <input type="number" id="num2" placeholder="Enter second number">
+  <br>
+
+  <button onclick="calculate('add')">Add</button>
+  <button onclick="calculate('sub')">Subtract</button>
+  <button onclick="calculate('mul')">Multiply</button>
+  <button onclick="calculate('div')">Divide</button>
+
+  <div id="result">Result: </div>
+
+  <script>
+    function calculate(operation) {
+      const n1 = parseFloat(document.getElementById("num1").value);
+      const n2 = parseFloat(document.getElementById("num2").value);
+      let result;
+
+      if (isNaN(n1) || isNaN(n2)) {
+        result = "Please enter both numbers!";
+      } else {
+        switch (operation) {
+          case "add":
+            result = n1 + n2;
+            break;
+          case "sub":
+            result = n1 - n2;
+            break;
+          case "mul":
+            result = n1 * n2;
+            break;
+          case "div":
+            result = n2 !== 0 ? n1 / n2 : "Cannot divide by 0!";
+            break;
+          default:
+            result = "Invalid operation";
+        }
+      }
+
+      document.getElementById("result").innerText = "Result: " + result;
+    }
+  </script>
+</body>
+</html>

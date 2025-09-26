@@ -1,0 +1,210 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Interactive Webpage Layout</title>
+  <style>
+    :root{
+      --accent:#6366f1;
+      --muted:#6b7280;
+      --bg:#f3f4f6;
+      --card:#ffffff;
+      --gap:16px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#111}
+
+    .page{
+      max-width:1200px;
+      margin:24px auto;
+      background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,1));
+      border-radius:12px;
+      box-shadow:0 6px 20px rgba(2,6,23,0.08);
+      overflow:hidden;
+    }
+
+    /* HEADER */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 20px;
+      background:var(--card);
+      gap:var(--gap);
+      border-bottom:2px solid #eee;
+    }
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo img{width:52px;height:52px;border-radius:50%;object-fit:cover;transition:transform 0.3s}
+    .logo img:hover{transform:rotate(8deg) scale(1.15)}
+    .brand{font-weight:800;font-size:20px;color:var(--accent)}
+    .social{display:flex;gap:14px;align-items:center}
+    .social a{text-decoration:none;color:var(--muted);font-size:18px;transition:color 0.3s}
+    .social a:hover{color:var(--accent)}
+
+    /* HERO BANNER */
+    .hero{
+      background:linear-gradient(135deg,#6366f1,#3b82f6);
+      color:white;
+      text-align:center;
+      padding:60px 20px;
+    }
+    .hero h1{font-size:36px;margin:0 0 12px;font-weight:700}
+    .hero p{margin:0;font-size:18px;opacity:0.9}
+
+    /* NAV */
+    nav.menubar{
+      display:flex;justify-content:center;background:var(--accent);padding:10px
+    }
+    nav.menubar ul{list-style:none;display:flex;gap:22px;margin:0;padding:0}
+    nav.menubar a{color:white;text-decoration:none;padding:8px 14px;border-radius:6px;font-weight:600;transition:background 0.3s}
+    nav.menubar a:hover,
+    nav.menubar a.active{background:rgba(255,255,255,0.25)}
+
+    /* LAYOUT */
+    .layout{display:grid;grid-template-columns:280px 1fr;gap:20px;padding:20px}
+
+    /* SIDEBAR */
+    aside.sidebar{background:var(--card);padding:16px;border-radius:8px;transition:transform 0.3s;position:sticky;top:20px;height:max-content}
+    aside.sidebar:hover{transform:translateY(-4px)}
+    aside h3{margin:0 0 12px 0;font-size:17px;color:var(--accent)}
+    .meta{font-size:14px;color:var(--muted);line-height:1.6}
+
+    /* MAIN GRID */
+    main{min-height:280px}
+    .grid-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 2px 8px rgba(2,6,23,0.05);display:flex;flex-direction:column;gap:10px;transition:transform 0.3s, box-shadow 0.3s;cursor:pointer}
+    .card:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 10px 25px rgba(2,6,23,0.15)}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+    .card h4{margin:0;font-size:17px;color:#111}
+    .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+
+    /* FOOTER */
+    footer{background:var(--card);padding:14px 20px;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid #eee}
+
+    /* RESPONSIVE */
+    @media (max-width:900px){
+      .layout{grid-template-columns:1fr;}
+      .grid-cards{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:560px){
+      nav.menubar ul{gap:10px}
+      .grid-cards{grid-template-columns:1fr}
+      header{flex-direction:column;align-items:stretch;text-align:center}
+      .social{justify-content:center}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HEADER -->
+    <header>
+      <div class="logo">
+        <img src="C:\Users\ADMIN\OneDrive\Pictures\WhatsApp Image 2025-02-19 at 16.13.18_b7150fbf.jpg" alt="Site logo">
+        <div>
+          <div class="brand">Mrunali Kate</div>
+          <div style="font-size:12px;color:var(--muted)">Software Engineer</div>
+        </div>
+      </div>
+      <div class="social" aria-label="social links">
+        <a href="#" title="Twitter">🐦</a>
+        <a href="#" title="LinkedIn">💼</a>
+        <a href="#" title="Instagram">📷</a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Welcome to My Portfolio</h1>
+      <p>Building impactful web experiences with creativity and code ✨</p>
+    </section>
+
+    <!-- NAVBAR -->
+    <nav class="menubar" aria-label="Primary navigation">
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- CONTENT LAYOUT -->
+    <div class="layout">
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar" aria-label="Sidebar with custom data">
+  <h3> About Me</h3>
+  <div class="meta">
+    <img src="C:\Users\ADMIN\OneDrive\Attachments\DT20234593104.jpg" alt="Profile Picture" style="width:60px;height:60px;border-radius:50%;margin-bottom:10px;">
+    <p>🌟 <strong>Name:</strong> Mrunali Kate</p>
+    <p>📍 <strong>Location:</strong> India</p>
+    <p>📅 <strong>Qualification:</strong> Bachelor of Engineering</p>
+    <p>💡 Passionate about crafting <strong>impactful web experiences</strong> with creativity and precision.</p>
+    <p>⚡ Loves learning new technologies and building interactive web apps!</p>
+  </div>
+</aside>
+
+
+      <!-- MAIN -->
+      <main>
+        <section class="grid-cards" aria-label="Three content boxes">
+
+          <article class="card" onclick="alert('You clicked Web Development!')">
+            <img src="C:\Users\ADMIN\Downloads\hire-java-developer.jpg" alt="Sample image 1">
+            <h4>Java Developer</h4>
+            <p> Java is a popular programming language that is used for many different types of software development.</p>
+          </article>
+
+          <article class="card" onclick="alert('You clicked UI/UX Design!')">
+            <img src="C:\Users\ADMIN\Downloads\istockphoto-1371339413-612x612.jpg" alt="Sample image 2">
+            <h4>Web Developer</h4>
+            <p>Designing engaging interfaces and user-friendly experiences with a focus on usability.</p>
+          </article>
+
+          <article class="card" onclick="alert('You clicked Content Creation!')">
+            <img src="C:\Users\ADMIN\Downloads\download.jpeg" alt="Sample image 3">
+            <h4>Python Developer</h4>
+            <p>Python is one of the most popular programming languages. It’s simple to use, packed with features and supported by a wide range of libraries and frameworks. </p>
+          </article>
+
+          <article class="card" onclick="alert('You clicked Content Creation!')">
+            <img src="C:\Users\ADMIN\Downloads\images.jpeg" alt="Sample image 3">
+            <h4>QA Engineer</h4>
+            <p>A QA engineer(Quality Assurance engineer) ensures software products meet high-quality standards by testing, identifying, and reporting defects before a product is released to users</p>
+          </article>
+
+          <article class="card" onclick="alert('You clicked Content Creation!')">
+            <img src="C:\Users\ADMIN\Downloads\Roadmap_to_become_an_AI_Engineer-scaled.jpg" alt="Sample image 3">
+            <h4>AI Engineer</h4>
+            <p>"An AI engineer is a technology professional who focuses on creating and implementing AI systems and solutions. Their work involves leveraging machine learning (ML) algorithms, data processing techniques, and computational models to develop systems that can learn from data and make decisions. </p>
+          </article>
+
+          <article class="card" onclick="alert('You clicked Content Creation!')">
+            <img src="C:\Users\ADMIN\Downloads\images (1).jpeg" alt="Sample image 3">
+            <h4>Programmer Analyst</h4>
+            <p> A programmer analyst is an IT professional who combines analytical skills with programming expertise to design, develop, test, and maintain software systems that meet business needs</p>
+          </article>
+
+        </section>
+      </main>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      © <span id="year"></span> Mrunali Kate — All rights reserved.
+    </footer>
+
+  </div>
+
+  <script>
+    // set current year automatically
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

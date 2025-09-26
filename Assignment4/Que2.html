@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Div Creation Assignment</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            width: 100%;
+        }
+        
+        .created-div {
+            background-color: #e3f2fd;
+            border: 2px solid #bbdefb;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+            color: #1976d2;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .created-div:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .controls {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        button {
+            background-color: #1976d2;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #1565c0;
+        }
+        
+        .instructions {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .instructions h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .instructions code {
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Div Creation Assignment</h1>
+    
+    <div class="instructions">
+        <h3>Instructions</h3>
+        <p>Enter width, height, and text content below to create a new div element.</p>
+        <p>You can also call <code>createDiv(width, height, text)</code> directly from the browser console.</p>
+    </div>
+    
+    <div class="controls">
+        <div class="input-group">
+            <label for="width">Width (px):</label>
+            <input type="number" id="width" placeholder="Enter width" value="150" min="50" max="500">
+        </div>
+        
+        <div class="input-group">
+            <label for="height">Height (px):</label>
+            <input type="number" id="height" placeholder="Enter height" value="100" min="50" max="500">
+        </div>
+        
+        <div class="input-group">
+            <label for="text">Text Content:</label>
+            <input type="text" id="text" placeholder="Enter text content" value="Hello World!">
+        </div>
+        
+        <button onclick="createDivFromInputs()">Create Div</button>
+    </div>
+    
+    <div id="container"></div>
+
+    <script>
+        // Write your code here
+        function createDiv(width, height, text) {
+            // Create a new div element
+            const newDiv = document.createElement('div');
+            
+            // Set the width and height with 'px' units
+            newDiv.style.width = width + 'px';
+            newDiv.style.height = height + 'px';
+            
+            // Set the text content
+            newDiv.textContent = text;
+            
+            // Add the class for styling
+            newDiv.classList.add('created-div');
+            
+            // Append the new div to the container
+            document.getElementById('container').appendChild(newDiv);
+            
+            return newDiv;
+        }
+        
+        // Helper function to create div from input values
+        function createDivFromInputs() {
+            const width = document.getElementById('width').value;
+            const height = document.getElementById('height').value;
+            const text = document.getElementById('text').value;
+            
+            if (width && height && text) {
+                createDiv(width, height, text);
+            } else {
+                alert('Please fill in all fields');
+            }
+        }
+        
+        // Do not change this code
+        Window.createDiv = createDiv;
+        
+        // Create some example divs on load
+        window.onload = function() {
+            createDiv(120, 80, 'Div 1');
+            createDiv(180, 100, 'Div 2');
+            createDiv(100, 120, 'Div 3');
+        };
+    </script>
+</body>
+</html>
